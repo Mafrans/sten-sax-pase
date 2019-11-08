@@ -1,8 +1,6 @@
-package com.meloniot.stensaxpase;
+package com.smeloniot.stensaxpase;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class StartForm {
     private JPanel root;
@@ -18,7 +16,8 @@ public class StartForm {
 
 
         robotButton.addActionListener(e -> {
-            Main.startRobotGame();
+            Thread thread = new Thread(Main::startRobotGame);
+            thread.start();
         });
 
         personButton.addActionListener(e -> {
@@ -27,7 +26,7 @@ public class StartForm {
             try {
                 short winRequirement = Short.parseShort(input);
 
-                Main.startPersonGame(winRequirement);
+                //Main.startPersonGame(winRequirement);
             }
             catch(NumberFormatException ex) {
                 JOptionPane.showMessageDialog(root, "Va, så kan man ju inte göra.");
